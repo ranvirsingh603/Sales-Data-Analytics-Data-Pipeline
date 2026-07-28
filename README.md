@@ -2,60 +2,62 @@
 
 This project is documented in Overview, Stages, and Conclusion, following the exact order in which I completed it. Below is the complete workflow of the project:
 
-![Project Flow](Screenshots & Images/Project Flow.png)
+![Project Flow](Screenshots%20&%20Images/Project%20Flow.png)
 
 ---
 
 ## OVERVIEW
+Our CRR Sales ERP system is built inside Google Sheets. Because the raw data is spread across multiple sheets, it was very difficult to get a clear overview of each customer and make quick business decisions. To solve this, I decided to build a dedicated **"CRR Sales Overview Dashboard."**
 
-[Insert your Overview text here: Google Sheets ERP operating at capacity, the need for a Sales Overview dashboard, why Power BI was chosen over Looker Studio, and using BigQuery as the bridge.]
+To build this dashboard, the raw data needed to be reformatted, cleaned, and processed into new calculated tables. However, these heavy operations could not be done directly inside Google Sheets. The sheet was already running at full capacity—handling daily workflows with heavy formulas, Google Forms, and Apps Scripts—and adding extra calculations would risk crashing or slowing down the ERP system.
+
+### Why Power BI over Looker Studio?
+While Looker Studio works well for simple, single-table reports, its data blending feature struggles when connecting multiple tables using complex relationships. Power BI was selected because its dedicated Tabular Modeling Engine (DAX and Relationship Manager) easily handles complex, multi-table relationships while keeping calculations accurate.
+
+### The Solution: Google BigQuery
+Power BI also lacks a direct connector for live Google Sheets. Google BigQuery solved both problems at once: it handled all the heavy data transformations off the spreadsheet and acted as a high-performance bridge between Google Sheets and Power BI.
+
+Below is the step-by-step workflow of how the project was completed:
+
+1. **Creating Sales Metrics**
+2. **Input ERP Raw Data**
+3. **BigQuery Connection & Data Reformatting**
+4. **Final Output Data for Dashboard**
+5. **Importing Data to Power BI**
+6. **Dashboard Creation**
+---
+
+## STAGE 1: CREATING SALES METRICS
+
+Before jumping into Google Sheets or writing SQL in BigQuery, it was essential to define key sales metrics that deliver actionable insights for the business. Defining these metrics upfront guided the data transformation process and determined what calculated columns and aggregate tables needed to be built.
+
+Below are the core sales metrics designed for each client:
+
+* **Conversion Ratio (Inquiry to Order):** Total Orders divided by Total Inquiries per client, measuring overall sales efficiency.
+* **Total Inquiries:** The total count of inquiries received per client.
+* **No. of Orders:** The total count of successfully converted orders per client.
+* **Total Order Value:** The total monetary value (sum) of all orders placed per client.
+* **Max Inquiries Before Yes:** The highest number of inquiries submitted by a client before converting their first order.
+* **Average Days from Inquiry to Order:** The average time (in days) it takes for a client to convert from an initial inquiry into a confirmed order.
+* **Inquiries Closed with No:** The count of inquiries that were officially closed without securing an order.
+* **Average No. of Follow-ups:** The average number of follow-ups required per inquiry for a client.
+* **Max No. of Follow-ups:** The maximum number of follow-ups recorded on a single inquiry for a client.
+* **Closed Inquiries:** The total number of completed inquiries (both successful orders and lost deals).
+* **Pending Inquiries:** The number of active inquiries currently awaiting client response or closure.
+* **No. of Follow-ups per Inquiry:** The total count of follow-ups conducted for active/pending inquiries per client.
 
 ---
 
-## STAGE 1: RAW DATA LAYER & SOURCE ANALYSIS
+## STAGE 2: INPUT ERP RAW DATA
 
-[Insert your Stage 1 text here: Custom ERP in Google Sheets, Forms, Apps Scripts, and the operational limits of live sheets.]
+The raw input data comes from a custom Google Sheets ERP system. The system runs on multiple Google Forms, Apps Scripts, complex formulas, and conditional formatting spread across several sheets. For daily operations, the ERP works smoothly and handles the company's workflow perfectly.
 
-![Stage 1 Raw Data Setup](images/stage1_raw_data.png)
+The specific data used for this project is the sales dataset, which is split across multiple sheet tabs following the operational workflow from **Inquiry Received** to **Accepting Purchase Order**
 
----
+Because clients move step-by-step through these separate sheets, a single client has records spread across multiple tabs. While this layout is ideal for daily business operations, it is completely unformatted and unoptimized for data analysis and dashboard creation.
 
-## STAGE 2: BIGQUERY CONNECTION & DATA STRUCTURING
-
-[Insert your Stage 2 text here: Connecting Sheets to BigQuery, unpivoting wide horizontal data into vertical relational formats, and automatic syncing.]
-
-![Stage 2 BigQuery Bridge](images/stage2_bigquery.png)
-
-🔗 **View SQL Code:** [01_raw_to_vertical.sql](sql/01_raw_to_vertical.sql)
+### ERP System Screenshots
+![ERP System Overview 1](images/erp_system_screenshot1.png)
+![ERP System Overview 2](images/erp_system_screenshot2.png)
 
 ---
-
-## STAGE 3: DATA TRANSFORMATION & CREATING FINAL TABLES
-
-[Insert your Stage 3 text here: Cleaning data, handling duplicates, calculating metrics using SQL, and materializing into 5 scheduled tables using `CREATE OR REPLACE TABLE`.]
-
-![Stage 3 Data Transformation](images/stage3_sql_transform.png)
-
-🔗 **View SQL Queries:** [02_conversion_ratio.sql](sql/02_conversion_ratio.sql) | [03_final_5_tables.sql](sql/03_final_5_tables.sql)
-
----
-
-## STAGE 4: LOADING DATA TO POWER BI & PERFORMANCE OPTIMIZATION
-
-[Insert your Stage 4 text here: Troubleshooting table visibility in Power BI, diagnosing DirectQuery latency (2–4 min wait times), and switching to Import Mode for instant performance.]
-
-![Stage 4 Power BI Configuration](images/stage4_powerbi_load.png)
-
----
-
-## STAGE 5: POWER BI DASHBOARD (CRR SALES OVERVIEW)
-
-[Insert your Stage 5 text here: Metrics designed like Conversion Ratio, Max Inquiries Before Order, Average Follow-ups per Client, and Pipeline Status.]
-
-![Stage 5 Dashboard Preview](images/stage5_dashboard.png)
-
----
-
-## CONCLUSION
-
-[Insert your Conclusion text here: Skills enhanced (problem-solving, complex SQL queries, performance tuning), project presentation learnings, and next steps for Phase 2.]
