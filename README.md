@@ -65,3 +65,18 @@ Because clients move step-by-step through these separate sheets, a single client
 ![ERP System Overview 2](Screenshots%20&%20Images/ERP%20System%20Screenshot%202)
 
 ---
+
+## STAGE 3: BIGQUERY CONNECTION & DATA REFORMATTING
+
+Since we cannot perform heavy data transformations inside Google Sheets and Power BI lacks a direct connector for Google Sheets, Google BigQuery was chosen to solve both challenges.
+
+BigQuery serves two main purposes in this pipeline:
+1. **High-Performance Data Engine:** It transforms wide, pivoted data spread across multiple sheet tabs into a clean, unpivoted vertical format using advanced SQL techniques.
+2. **Automated Cloud Bridge:** It connects Google Sheets directly to Power BI with automatic sync enabled. Whenever new entries are added or updated in Google Sheets, the data updates automatically inside BigQuery.
+
+### SQL Transformation Code
+Click below to open the complete SQL file in the repository:
+
+📄 [Raw_to_vertical_Query](SQL/01_raw_to_vertical.sql)
+
+---
