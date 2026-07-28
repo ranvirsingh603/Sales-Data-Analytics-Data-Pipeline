@@ -122,3 +122,29 @@ Calculates the average velocity from initial client contact to confirmed sale.
 * 📄 **View Query:** [Click here](SQL/05_avg_inquiry_days.sql)
 
 ---
+
+## STAGE 5: LOADING DATA TO POWER BI & PERFORMANCE OPTIMIZATION
+
+With all 5 tables prepared in BigQuery, the next step was to connect and load the data into Power BI:
+
+1. Click on **Get Data** $\rightarrow$ select **Google BigQuery** $\rightarrow$ click **Connect**.
+2. Log in using your Google account credentials.
+3. In the Navigator window, select the target dataset and tables, then click **Load**.
+
+![BigQuery Connection Setup](Screenshots%20%&%20%Images/BigQuery%20%Connection.png)
+
+
+### Challenge 1: Missing Tables in Power BI Navigator
+* **Problem:** When opening the BigQuery dataset inside Power BI, the main reformatted table was missing from the list, even though it was visible inside BigQuery.
+* **Root Cause & Solution:** Complex unpivoted SQL views do not always expose their schema properly to Power BI. To resolve this, I updated the SQL script to materialize the result into a physical table (`CREATE OR REPLACE TABLE`) and configured a **Scheduled Query** in BigQuery to update the table automatically every day.
+
+![BigQuery Data Loading](Screenshots%20%&%20%Images/Loading%20%data%20%to%20%PowerBi.png)
+
+
+### Challenge 2: Slow Performance with DirectQuery
+* **Problem:** After successfully loading the tables, the dashboard interaction was extremely slow, taking 2 to 4 minutes to respond to a single click.
+* **Root Cause & Solution:** The connection defaulted to **DirectQuery Mode**. Under DirectQuery, Power BI does not store local data; instead, it sends a live SQL query to BigQuery every time a visual or filter is clicked. To fix this, I switched the connection mode to **Import Mode**. Power BI brought a copy of the compressed data into its internal memory, making dashboard interactions lighting-fast.
+
+With the data successfully loaded and optimized, the data pipeline was ready for dashboard design.
+
+---
