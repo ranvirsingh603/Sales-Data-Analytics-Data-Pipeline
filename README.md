@@ -2,7 +2,7 @@
 
 This project is documented in Overview, Stages, and Conclusion, following the exact order in which I completed it. Below is the complete workflow of the project:
 
-![Project Flow](images/project_flow.png)
+![Project Flow](Screenshots & Images/Project Flow.png)
 
 ---
 
