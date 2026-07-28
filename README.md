@@ -57,7 +57,11 @@ The specific data used for this project is the sales dataset, which is split acr
 Because clients move step-by-step through these separate sheets, a single client has records spread across multiple tabs. While this layout is ideal for daily business operations, it is completely unformatted and unoptimized for data analysis and dashboard creation.
 
 ### ERP System Screenshots
-![ERP System Overview 1](images/erp_system_screenshot1.png)
-![ERP System Overview 2](images/erp_system_screenshot2.png)
+
+#### ERP System Overview 1
+![ERP System Overview 1](Screenshots%20&%20Images/ERP%20System%20Screenshot%201)
+
+#### ERP System Overview 2
+![ERP System Overview 2](Screenshots%20&%20Images/ERP%20System%20Screenshot%202)
 
 ---
