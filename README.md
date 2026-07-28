@@ -77,6 +77,6 @@ BigQuery serves two main purposes in this pipeline:
 ### SQL Transformation Code
 Click below to open the complete SQL file in the repository:
 
-📄 [Raw_to_vertical_Query](SQL/01_raw_to_vertical.sql)
+📄 [Raw to vertical Query](SQL/01_raw_to_vertical.sql)
 
 ---
