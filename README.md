@@ -93,28 +93,24 @@ After cleaning, the next step was to build dedicated summary tables tailored spe
 The core cleaned, unpivoted fact table containing complete timeline and status tracking.
 * **Columns:** `Client No.`, `Inq. No.`, `Planned Time`, `Actual Time`, `Status`, `Step`
 
----
 
 ### 2. Client Conversion Ratio, Avg. Inquiries Before Yes & Total Order Value
 Aggregates sales performance and conversion efficiency per client.
 * **Columns:** `Client No.`, `Conversion Ratio (Inquiry to Order)`, `Maximum Inquiries before Yes`, `Total Order value`
 * 📄 **View Query:** [Click here](SQL/02_conversion_ratio.sql)
 
----
 
 ### 3. Client Closed vs. Pending Inquiries
 Tracks the current inquiry status breakdown per client.
 * **Columns:** `Client No.`, `Closed Inquiries`, `Pending Inquiries`
 * 📄 **View Query:** [Click here](SQL/03_closed_vs_pending.sql)
 
----
 
 ### 4. Inquiry Follow-ups Breakdown (Current, Average & Max)
 Measures the effort and touchpoints required per inquiry and per client.
 * **Columns:** `Client No.`, `Inq. No.`, `No. of Inquiry Followups`, `Average Followups by Client`, `Maximum Followups by Client`
 * 📄 **View Query:** [Click here](SQL/04_followups_breakdown.sql)
 
----
 
 ### 5. Average Inquiry to Order Days
 Calculates the average velocity from initial client contact to confirmed sale.
@@ -131,14 +127,19 @@ With all 5 tables prepared in BigQuery, the next step was to connect and load th
 2. Log in using your Google account credentials.
 3. In the Navigator window, select the target dataset and tables, then click **Load**.
 
-![BigQuery Connection Setup](Screenshots%20%&%20%Images/BigQuery%20%Connection.png)
 
+### BigQuery Connection
+![BigQuery_Connection_Setup](Screenshots%20&%20Images/BigQuery%20Connection.png)
+
+
+### BigQuery Data Loading
+![BigQuery Data Loading](Screenshots%20&%20Images//Loading%20data%20to%20PowerBi.png)
 
 ### Challenge 1: Missing Tables in Power BI Navigator
 * **Problem:** When opening the BigQuery dataset inside Power BI, the main reformatted table was missing from the list, even though it was visible inside BigQuery.
 * **Root Cause & Solution:** Complex unpivoted SQL views do not always expose their schema properly to Power BI. To resolve this, I updated the SQL script to materialize the result into a physical table (`CREATE OR REPLACE TABLE`) and configured a **Scheduled Query** in BigQuery to update the table automatically every day.
 
-![BigQuery Data Loading](Screenshots%20%&%20%Images/Loading%20%data%20%to%20%PowerBi.png)
+
 
 
 ### Challenge 2: Slow Performance with DirectQuery
