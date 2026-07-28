@@ -80,3 +80,45 @@ Click below to open the complete SQL file in the repository:
 📄 [Raw to vertical Query](SQL/01_raw_to_vertical.sql)
 
 ---
+
+## STAGE 4: DATA CLEANING & FINAL TABLE CREATION
+
+Although the raw ERP data was successfully unpivoted in the previous stage, it was still uncleaned transactional data. Before feeding it into Power BI, it required thorough cleaning and processing—fixing inconsistent data types, eliminating duplicate records, and enforcing standard formatting.
+
+After cleaning, the next step was to build dedicated summary tables tailored specifically to our sales metrics. By offloading all heavy SQL aggregations to BigQuery, we transformed the raw data into 5 optimized, production-ready tables for dashboard creation:
+
+---
+
+### 1. CRR Sales Final Table
+The core cleaned, unpivoted fact table containing complete timeline and status tracking.
+* **Columns:** `Client No.`, `Inq. No.`, `Planned Time`, `Actual Time`, `Status`, `Step`
+
+---
+
+### 2. Client Conversion Ratio, Avg. Inquiries Before Yes & Total Order Value
+Aggregates sales performance and conversion efficiency per client.
+* **Columns:** `Client No.`, `Conversion Ratio (Inquiry to Order)`, `Maximum Inquiries before Yes`, `Total Order value`
+* 📄 **View Query:** [Click here](SQL/02_conversion_ratio.sql)
+
+---
+
+### 3. Client Closed vs. Pending Inquiries
+Tracks the current inquiry status breakdown per client.
+* **Columns:** `Client No.`, `Closed Inquiries`, `Pending Inquiries`
+* 📄 **View Query:** [Click here](SQL/03_closed_vs_pending.sql)
+
+---
+
+### 4. Inquiry Follow-ups Breakdown (Current, Average & Max)
+Measures the effort and touchpoints required per inquiry and per client.
+* **Columns:** `Client No.`, `Inq. No.`, `No. of Inquiry Followups`, `Average Followups by Client`, `Maximum Followups by Client`
+* 📄 **View Query:** [Click here](SQL/04_followups_breakdown.sql)
+
+---
+
+### 5. Average Inquiry to Order Days
+Calculates the average velocity from initial client contact to confirmed sale.
+* **Columns:** `Client No.`, `Average Days from Inquiry to Order closure`
+* 📄 **View Query:** [Click here](SQL/05_avg_inquiry_days.sql)
+
+---
