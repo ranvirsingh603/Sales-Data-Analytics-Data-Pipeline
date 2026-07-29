@@ -149,3 +149,39 @@ With all 5 tables prepared in BigQuery, the next step was to connect and load th
 With the data successfully loaded and optimized, the data pipeline was ready for dashboard design.
 
 ---
+
+## STAGE 6: POWER BI DASHBOARD CREATION
+
+With the data loaded and optimized, it was time to build the **"CRR Sales Overview Dashboard."**
+
+Before opening Power BI, I sketched the dashboard wireframe on paper to plan the layout and visual hierarchy. After finalizing the layout, I imported the 5 tables, set up the data model relationships, and enabled bi-directional filtering (`Both`) to ensure seamless cross-filtering across all summary tables.
+
+![Power BI Model Relationships](images/powerbi_data_model.png)
+
+---
+
+### DAX Measures Created
+
+To complete the dashboard metrics, I wrote two key DAX measures:
+
+1. **Number of Orders:**
+   ```DAX
+   No. of Orders = 
+   ROUND(
+       (AVERAGE('conRatio_maxInqBeforeYes_totalOrderValue_byClient'[inq_order_ratio]) * 
+       DISTINCTCOUNT('crr_final_table'[Inq_No])) / 100, 
+       1
+   )
+
+2. **Inquiries Closed with "No":**
+   ```DAX
+   Closed with No = 
+      SUM('closed_vs_pending_inqs_by_clients'[closed_inqs]) - [No. of Orders]
+
+### Dashboard Layout & Visuals
+
+To keep the user interface clean, scannable, and focused on core KPIs, I designed the dashboard using:
+
+* **A Client Slicer** at the top for quick interactive filtering.
+* **KPI Card Visuals** displaying high-level metrics (Conversion Ratio, Total Inquiries, Orders, Average Days to Order, and Follow-up counts).
+* **A Detailed Summary Table** breaking down inquiry-level status and performance per client.
