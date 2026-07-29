@@ -156,7 +156,7 @@ With the data loaded and optimized, it was time to build the **"CRR Sales Overvi
 
 Before opening Power BI, I sketched the dashboard wireframe on paper to plan the layout and visual hierarchy. After finalizing the layout, I imported the 5 tables, set up the data model relationships, and enabled bi-directional filtering (`Both`) to ensure seamless cross-filtering across all summary tables.
 
-![Power BI Model Relationships](images/powerbi_data_model.png)
+![Power BI Model Relationships](Screenshots%20&%20Images/BI%20Relationship%20(CRR%20Project).png)
 
 ---
 
@@ -185,3 +185,5 @@ To keep the user interface clean, scannable, and focused on core KPIs, I designe
 * **A Client Slicer** at the top for quick interactive filtering.
 * **KPI Card Visuals** displaying high-level metrics (Conversion Ratio, Total Inquiries, Orders, Average Days to Order, and Follow-up counts).
 * **A Detailed Summary Table** breaking down inquiry-level status and performance per client.
+
+![Power BI Dashboard](Screenshots%20&%20Images/BI%20dashboard%20(CRR%20Project).png)
