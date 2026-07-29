@@ -187,3 +187,16 @@ To keep the user interface clean, scannable, and focused on core KPIs, I designe
 * **A Detailed Summary Table** breaking down inquiry-level status and performance per client.
 
 ![Power BI Dashboard](Screenshots%20&%20Images/BI%20dashboard%20(CRR%20Project).png)
+
+## CONCLUSION
+
+This project delivers clear business value by turning raw, scattered ERP data into actionable sales insights. Management can now easily track how much time and effort is spent on each customer—from initial proposals and follow-ups to final deal closure—while instantly seeing key results.
+
+On a personal level, this project helped strengthen my data engineering and analytical skills:
+* **Problem-Solving & Data Engineering:** Writing complex SQL queries in BigQuery to unpivot, clean, and aggregate multi-table operational data.
+* **Performance Optimization:** Learning how to optimize data refresh pipelines and memory management in Power BI using Import Mode.
+* **Portfolio & Project Presentation:** Structuring and presenting an end-to-end data pipeline project clearly from start to finish.
+
+This completes Phase 1 of the project! I look forward to building Phase 2, which will feature advanced DAX time-intelligence metrics and deeper dashboard visualizations.
+
+---
