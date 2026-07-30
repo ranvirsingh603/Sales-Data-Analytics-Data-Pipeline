@@ -1,4 +1,4 @@
-CREATE OR REPLACE TABLE `reliable-aloe-423606-g8.CRR_SYSTEM.conRatio_maxInqBeforeYes_totalOrderValue_byClient`
+CREATE OR REPLACE TABLE `project_name.CRR_SYSTEM.conRatio_maxInqBeforeYes_totalOrderValue_byClient`
 AS
 WITH max_inqs AS
   (SELECT
@@ -10,7 +10,7 @@ WITH max_inqs AS
       Status,
       ROW_NUMBER() OVER (PARTITION BY Client_No ORDER BY Inq_No ASC) AS row_no
     FROM
-      `reliable-aloe-423606-g8.CRR_SYSTEM.crr_final_table`
+      `project_name.CRR_SYSTEM.crr_final_table`
     WHERE
       Step = 'Order'
     ) t
@@ -24,7 +24,7 @@ WITH max_inqs AS
       COUNT(DISTINCT CASE WHEN Step = 'Order' AND Status = 'Yes' THEN Inq_No END),
       COUNT(DISTINCT CASE WHEN Step = 'Proposal'THEN Inq_No END) ) * 100, 2), 0) AS inq_order_ratio
     FROM
-        `reliable-aloe-423606-g8.CRR_SYSTEM.crr_final_table`
+        `project_name.CRR_SYSTEM.crr_final_table`
     GROUP BY Client_No
     HAVING inq_order_ratio > 0
   )
@@ -44,7 +44,7 @@ LEFT JOIN
     max_inqs
   GROUP BY Client_No) m
 ON c.Client_No = m.Client_No
-LEFT JOIN `reliable-aloe-423606-g8.CRR_SYSTEM.Client_total_order` ov
+LEFT JOIN `project_name.CRR_SYSTEM.Client_total_order` ov
 ON c.Client_No = ov.Client_No
 ORDER BY inq_order_ratio DESC, total_order_value DESC
 
