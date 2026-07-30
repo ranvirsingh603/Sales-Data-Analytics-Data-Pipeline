@@ -87,7 +87,6 @@ Although the raw ERP data was successfully unpivoted in the previous stage, it w
 
 After cleaning, the next step was to build dedicated summary tables tailored specifically to our sales metrics. By offloading all heavy SQL aggregations to BigQuery, we transformed the raw data into 5 optimized, production-ready tables for dashboard creation:
 
----
 
 ### 1. CRR Sales Final Table
 The core cleaned, unpivoted fact table containing complete timeline and status tracking.
