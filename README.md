@@ -182,7 +182,7 @@ To complete the dashboard metrics, I wrote two key DAX measures:
 To keep the user interface clean, scannable, and focused on core KPIs, I designed the dashboard using:
 
 * **A Client Slicer** at the top for quick interactive filtering.
-* **KPI Card Visuals** displaying high-level metrics (Conversion Ratio, Total Inquiries, Orders, Average Days to Order, and Follow-up counts).
+* **KPI Card Visuals** displaying high-level metrics.
 * **A Detailed Summary Table** breaking down inquiry-level status and performance per client.
 
 ![Power BI Dashboard](Screenshots%20&%20Images/BI%20dashboard%20(CRR%20Project).png)
