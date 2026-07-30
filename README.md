@@ -153,7 +153,7 @@ With the data successfully loaded and optimized, the data pipeline was ready for
 
 With the data loaded and optimized, it was time to build the **"CRR Sales Overview Dashboard."**
 
-Before opening Power BI, I sketched the dashboard wireframe on paper to plan the layout and visual hierarchy. After finalizing the layout, I imported the 5 tables, set up the data model relationships, and enabled bi-directional filtering (`Both`) to ensure seamless cross-filtering across all summary tables.
+Before opening Power BI, I sketched the dashboard on paper to plan the layout and visual hierarchy. After finalizing the layout, I imported the 5 tables, set up the data model relationships, and enabled bi-directional filtering (`Both`) to ensure seamless cross-filtering across all summary tables.
 
 ![Power BI Model Relationships](Screenshots%20&%20Images/BI%20Relationship%20(CRR%20Project).png)
 
