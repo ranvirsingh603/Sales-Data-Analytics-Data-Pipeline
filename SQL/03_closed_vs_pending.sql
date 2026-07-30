@@ -1,11 +1,11 @@
-CREATE OR REPLACE TABLE reliable-aloe-423606-g8.CRR_SYSTEM.closed_vs_pending_inqs_by_clients
+CREATE OR REPLACE TABLE project_name.CRR_SYSTEM.closed_vs_pending_inqs_by_clients
 AS
 WITH cte as (
   SELECT
   Client_No,
   COUNT(Client_No) AS closed_inqs
 FROM
-  `reliable-aloe-423606-g8.CRR_SYSTEM.crr_final_table`
+  `project_name.CRR_SYSTEM.crr_final_table`
 WHERE
   Step = 'Order'  AND
   Status IS NOT NULL
@@ -23,7 +23,7 @@ LEFT JOIN
     Client_No,
     COUNT(Client_No) AS Pending_inq
   FROM
-    `reliable-aloe-423606-g8.CRR_SYSTEM.crr_final_table`
+    `project_name.CRR_SYSTEM.crr_final_table`
   WHERE
     Step = 'Order' AND
     Planned IS NOT NULL AND
