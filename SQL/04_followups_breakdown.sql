@@ -1,4 +1,4 @@
-CREATE OR REPLACE TABLE `reliable-aloe-423606-g8.CRR_SYSTEM.avg_max_no_of_followups`
+CREATE OR REPLACE TABLE `project_name.CRR_SYSTEM.avg_max_no_of_followups`
 AS
 WITH
 pendingInqs AS
@@ -6,7 +6,7 @@ pendingInqs AS
     Inq_No,
     Client_No
   FROM
-    `reliable-aloe-423606-g8.CRR_SYSTEM.crr_final_table`
+    `project_name.CRR_SYSTEM.crr_final_table`
   WHERE
     Step = 'Order' AND
     Planned IS NOT NULL AND
@@ -19,7 +19,7 @@ closedInqs AS
     Inq_No,
     Client_No
   FROM
-    `reliable-aloe-423606-g8.CRR_SYSTEM.crr_final_table`
+    `project_name.CRR_SYSTEM.crr_final_table`
   WHERE
     Step = 'Order' AND
     Actual IS NOT NULL
@@ -31,7 +31,7 @@ FollpPerInq AS
     Inq_No,
     COUNT(Actual) as no_of_followps_by_Inq
   FROM
-    `reliable-aloe-423606-g8.CRR_SYSTEM.crr_final_table`
+    `project_name.CRR_SYSTEM.crr_final_table`
   WHERE
     Step = 'Proposal to Order Followup'
   GROUP BY
@@ -46,7 +46,7 @@ AvgFollClosedInq AS
   FROM
     closedInqs AS c
   LEFT JOIN
-    `reliable-aloe-423606-g8.CRR_SYSTEM.crr_final_table` AS o
+    `project_name.CRR_SYSTEM.crr_final_table` AS o
   ON c.Inq_No = o.Inq_No AND o.Step = 'Proposal to Order Followup'
   GROUP BY
     c.Client_No),
@@ -64,7 +64,7 @@ MaxFollClosedInq AS
     FROM
       closedInqs AS c
     LEFT JOIN
-      `reliable-aloe-423606-g8.CRR_SYSTEM.crr_final_table` AS o
+      `project_name.CRR_SYSTEM.crr_final_table` AS o
     ON c.Inq_No = o.Inq_No AND o.Step = 'Proposal to Order Followup'
     GROUP BY c.Client_No,c.Inq_No) t
     GROUP BY t.Client_No
